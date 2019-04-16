@@ -18,7 +18,11 @@ public class RoomController {
     @GetMapping(path = "/{id}")
     public ModelAndView findRoom(@PathVariable("id") Long id, ModelAndView modelAndView) {
         modelAndView.setViewName("currentRoom");
-        modelAndView.addObject("room", roomService.findRoomById(id));
+        if(roomService.findRoomById(id) != null){
+            modelAndView.addObject("room", roomService.findRoomById(id));
+        }else{
+            modelAndView.addObject("errorRoom", "There is no such room");
+        }
         return modelAndView;
     }
 

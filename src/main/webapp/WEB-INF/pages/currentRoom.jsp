@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <c:choose>
+        <c:when test="${errorRoom != null}">
+            <h1 class="display-4 mt-5 mb-5 text-center">${errorRoom}</h1>
+        </c:when>
+    <c:otherwise>
     <c:if test="${!room.bulb.light}">
         <style>
             body {
@@ -47,6 +52,8 @@
             </form>
         </div>
     </c:otherwise>
+</c:choose>
+</c:otherwise>
 </c:choose>
 <div class="row justify-content-center mt-5">
     <a href="${pageContext.request.contextPath}/">Back</a>

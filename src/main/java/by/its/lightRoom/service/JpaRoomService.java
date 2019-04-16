@@ -6,6 +6,7 @@ import by.its.lightRoom.repository.RoomRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Service
@@ -27,7 +28,11 @@ public class JpaRoomService implements RoomService {
     @Override
     @Transactional(readOnly = true)
     public Room findRoomById(Long id) {
-        return roomRepository.findRoomById(id);
+        try{
+            return roomRepository.findRoomById(id);
+        }catch (NoResultException e){
+            return null;
+        }
     }
 
     @Override
